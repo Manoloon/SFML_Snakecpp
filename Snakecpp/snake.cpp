@@ -8,10 +8,7 @@ Snake::Snake(int l_blockSize)
 	Reset();
 }
 
-Snake::~Snake()
-{
-
-}
+Snake::~Snake(){}
 
 void Snake::SetDirection(Direction l_dir)
 {
@@ -74,16 +71,15 @@ void Snake::Extend()
 
 		if (tail_head.position.x == tail_bone.position.x)
 		{
-			if (tail_head.position.y > tail_bone.y)
+			if (tail_head.position.y > tail_bone.position.y)
 			{
-				m_snakeBody.push_back(SnakeSegment(tail_head.position.x, tail_bone.position.y + 1));
+				m_snakeBody.push_back(SnakeSegment(tail_head.position.x, (tail_bone.position.y + 1)));
 			}
 			else
 			{
-				m_snakeBody.push_back(SnakeSegment(tail_head.position.x, tail_head.position.y - 1));
+				m_snakeBody.push_back(SnakeSegment(tail_head.position.x, (tail_head.position.y - 1)));
 			}
-		}
-		else if (tail_head.position.y == tail_bone.position.y)
+		}else if (tail_head.position.y == tail_bone.position.y)
 		{
 			if (tail_head.position.x > tail_bone.position.x)
 			{
@@ -94,7 +90,7 @@ void Snake::Extend()
 				m_snakeBody.push_back(SnakeSegment(tail_head.position.x - 1, tail_head.position.y));
 			}
 		}
-	else
+	}else
 		{
 		if (m_dir == Direction::Up)
 		{
@@ -103,13 +99,12 @@ void Snake::Extend()
 		}else if (m_dir == Direction::Down)
 		{
 			m_snakeBody.push_back(SnakeSegment(tail_head.position.x, tail_head.position.y - 1));
-
 		}
 		else if (m_dir == Direction::Left)
 		{
-			m_snakeBody.push_back(SnakeSegment(tail_head.position + 1, tail_head.position.y));
+			m_snakeBody.push_back(SnakeSegment(tail_head.position.x + 1, tail_head.position.y));
 		}
-		}else if (m_dir == Direction::Right)
+		else if (m_dir == Direction::Right)
 		{
 				m_snakeBody.push_back(SnakeSegment(tail_head.position.x - 1, tail_head.position.y));
 		}
@@ -133,7 +128,7 @@ void Snake::Reset()
 
 void Snake::Move()
 {
-	for(int i= m_snakeBody.size()-1;i>0;i++)
+	for(int i= m_snakeBody.size()-1;i>0;--i)
 	{
 		m_snakeBody[i].position = m_snakeBody[i - 1].position;
 	}
@@ -149,7 +144,7 @@ void Snake::Move()
 	{
 		--m_snakeBody[0].position.y;
 	}
-	else if (m_dir = Direction::Down)
+	else if (m_dir == Direction::Down)
 	{
 		++m_snakeBody[0].position.y;
 	}
@@ -198,7 +193,7 @@ void Snake::CheckCollision()
 {
 	if (m_snakeBody.size() < 5) { return; }
 	SnakeSegment& head = m_snakeBody.front();
-	for (auto itr = m_snakeBody.begin()+1)
+	for (auto itr = m_snakeBody.begin()+1;itr != m_snakeBody.end();itr++)
 	{
 		if(itr->position == head.position)
 		{

@@ -15,13 +15,8 @@ public:
 	window* GetWindow();
 
 private:
-	void MoveSprite();
-
+	
 	window m_window;
-
-	sf::Texture PowerTexture;
-	sf::Sprite PowerSprite;
-	sf::Vector2i m_Increment;
 
 	sf::Clock m_clock;
 	sf::Time m_timeElapsed;
