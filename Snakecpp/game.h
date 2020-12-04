@@ -1,5 +1,8 @@
 #pragma once
 #include "window.h"
+#include "snake.h"
+#include "World.h"
+
 class game
 {
 public:
@@ -9,7 +12,7 @@ public:
 	void Update();
 	void Render();
 
-	sf::Time GetTimeElapsed();
+	float GetTimeElapsed();
 	void RestartClock();
 
 	window* GetWindow();
@@ -19,7 +22,12 @@ private:
 	window m_window;
 
 	sf::Clock m_clock;
-	sf::Time m_timeElapsed;
+	float m_timeElapsed;
 
+	World m_world;
+	Snake m_snake;
+
+	//inputs
+	// definir variables con multiples inputs.
 };
 

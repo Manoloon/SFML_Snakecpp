@@ -67,6 +67,11 @@ sf::Vector2u window::GetWindowSize()
 	return m_windowSize;
 }
 
+sf::RenderWindow* window::GetRenderWindow()
+{
+	return &m_window;
+}
+
 void window::ToggleFullscreen()
 {
 	m_isFullscreen = !m_isFullscreen;
@@ -78,6 +83,8 @@ void window::Draw(sf::Drawable& l_Drawable)
 {
 	m_window.draw(l_Drawable);
 }
+
+
 
 void window::Destroy()
 {
