@@ -2,6 +2,7 @@
 #include "window.h"
 #include "snake.h"
 #include "World.h"
+#include "TextBox.h"
 
 class game
 {
@@ -26,6 +27,7 @@ private:
 
 	World m_world;
 	Snake m_snake;
+	TextBox m_textBox;
 
 	//inputs
 	// definir variables con multiples inputs.

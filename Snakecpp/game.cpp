@@ -7,6 +7,8 @@ game::game():m_window("Snake Game", sf::Vector2u(800,600)),m_snake(m_world.GetBl
 	m_clock.restart();
 	srand(time(nullptr));
 	m_timeElapsed = 0.0f;
+	m_textBox.Setup(5, 14, 350, sf::Vector2f(225, 20));
+	m_textBox.Add("random number generator: " + std::to_string(time(NULL)));
 }
 
 game::~game(){}
@@ -43,6 +45,7 @@ void game::Update()
 		m_timeElapsed -= timeStep;
 		if(m_snake.HasLost())
 		{
+			m_textBox.Add("The Snake has been killed ");
 			m_snake.Reset();
 		}
 	}
@@ -54,7 +57,7 @@ void game::Render()
 
 	m_world.Render(*m_window.GetRenderWindow());
 	m_snake.Render(*m_window.GetRenderWindow());
-
+	m_textBox.Render(*m_window.GetRenderWindow());
 	m_window.EndDraw();
 }
 
